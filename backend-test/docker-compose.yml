@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+app:
+build: .
+ports:
+- "3000:3000"
+depends_on:
+- mysql_db
+- redis_cache
+env_file: .env
+mysql_db: image: mysql:8 
+environment:
+MYSQL_DATABASE: fintech_db
+MYSQL_ROOT_PASSWORD: root_password
+ports:
+- "3306:3306"
+redis_cache: image: redis:alpine 
+ports:
+- "6379:6379"
